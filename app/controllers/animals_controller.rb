@@ -1,4 +1,6 @@
 class AnimalsController < ApplicationController
+    BASE_ANIMAL_URL = "https://www.longmonthumane.org/animals/view-animal/?animalID="
+
     def index
         options = Selenium::WebDriver::Chrome::Options.new
         options.add_argument("--headless")
