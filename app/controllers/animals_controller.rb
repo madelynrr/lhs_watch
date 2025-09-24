@@ -11,5 +11,10 @@ class AnimalsController < ApplicationController
         wait.until { driver.find_element(:css, ".animal") }
 
         all_animals = driver.find_elements(css: '.animal')
+
+        all_animals.each do |animal|
+            if animal.attribute('data-species') == "Dog"
+            end
+        end
     end
 end
