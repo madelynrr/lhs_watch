@@ -9,5 +9,7 @@ class AnimalsController < ApplicationController
 
         wait = Selenium::WebDriver::Wait.new(timeout: 10)
         wait.until { driver.find_element(:css, ".animal") }
+
+        all_animals = driver.find_elements(css: '.animal')
     end
 end
