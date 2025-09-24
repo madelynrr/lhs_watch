@@ -6,5 +6,8 @@ class AnimalsController < ApplicationController
         driver = Selenium::WebDriver.for :chrome, options: options
 
         driver.navigate.to("https://www.longmonthumane.org/animals/")
+
+        wait = Selenium::WebDriver::Wait.new(timeout: 10)
+        wait.until { driver.find_element(:css, ".animal") }
     end
 end
