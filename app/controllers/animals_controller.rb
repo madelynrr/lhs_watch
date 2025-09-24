@@ -17,6 +17,8 @@ class AnimalsController < ApplicationController
                 name = animal.find_element(css: ".name").text
                 lhs_id = animal.find_element(css: 'a').attribute("href").delete_prefix(BASE_ANIMAL_URL)
                 gender = animal.attribute("data-sex").downcase
+
+                new_animal = Animal.create!(name:  name, lhs_id: lhs_id, gender: gender)
             end
         end
     end
