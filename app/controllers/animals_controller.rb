@@ -21,5 +21,6 @@ class AnimalsController < ApplicationController
                 new_animal = Animal.create!(name:  name, lhs_id: lhs_id, gender: gender)
             end
         end
+        driver.quit
     end
 end
