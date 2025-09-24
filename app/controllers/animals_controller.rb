@@ -14,6 +14,9 @@ class AnimalsController < ApplicationController
 
         all_animals.each do |animal|
             if animal.attribute('data-species') == "Dog"
+                name = animal.find_element(css: ".name").text
+                lhs_id = animal.find_element(css: 'a').attribute("href").delete_prefix(BASE_ANIMAL_URL)
+                gender = animal.attribute("data-sex").downcase
             end
         end
     end
