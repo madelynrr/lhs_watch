@@ -1,28 +1,70 @@
 class AnimalsController < ApplicationController
-    BASE_ANIMAL_URL = "https://www.longmonthumane.org/animals/view-animal/?animalID="
+    before_action :set_animal, only: %i[ show edit update destroy ]
 
+    # GET /animals or /animals.json
     def index
-        options = Selenium::WebDriver::Chrome::Options.new
-        options.add_argument("--headless")
+        @animals = Animal.all.order(:name)
+    end
 
-        driver = Selenium::WebDriver.for :chrome, options: options
+    # GET /animals/1 or /animals/1.json
+    def show
+    end
 
-        driver.navigate.to("https://www.longmonthumane.org/animals/")
+    # GET /animals/new
+    def new
+        @animal = Animal.new
+    end
 
-        wait = Selenium::WebDriver::Wait.new(timeout: 10)
-        wait.until { driver.find_element(:css, ".animal") }
+    # GET /animals/1/edit
+    def edit
+    end
 
-        all_animals = driver.find_elements(css: ".animal")
+    # POST /animals or /animals.json
+    def create
+        @animal = Animal.new(animal_params)
 
-        all_animals.each do |animal|
-            if animal.attribute("data-species") == "Dog"
-                name = animal.find_element(css: ".name").text
-                lhs_id = animal.find_element(css: "a").attribute("href").delete_prefix(BASE_ANIMAL_URL)
-                gender = animal.attribute("data-sex").downcase
+        respond_to do |format|
+        if @animal.save
+            format.html { redirect_to @animal, notice: "Animal was successfully created." }
+            format.json { render :show, status: :created, location: @animal }
+        else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @animal.errors, status: :unprocessable_entity }
+        end
+        end
+    end
 
-                new_animal = Animal.create!(name:  name, lhs_id: lhs_id, gender: gender)
+    # PATCH/PUT /animals/1 or /animals/1.json
+    def update
+        respond_to do |format|
+            if @animal.update(animal_params)
+                format.html { redirect_back(fallback_location: @animal, notice: "Animal was successfully updated.", status: :see_other) }
+                format.json { render :show, status: :ok, location: @animal }
+            else
+                format.html { render :edit, status: :unprocessable_entity }
+                format.json { render json: @animal.errors, status: :unprocessable_entity }
             end
         end
-        driver.quit
     end
+
+    # DELETE /animals/1 or /animals/1.json
+    def destroy
+        @animal.destroy!
+
+        respond_to do |format|
+        format.html { redirect_to animals_path, notice: "Animal was successfully destroyed.", status: :see_other }
+        format.json { head :no_content }
+        end
+    end
+
+    private
+        # Use callbacks to share common setup or constraints between actions.
+        def set_animal
+        @animal = Animal.find(params.expect(:id))
+        end
+
+        # Only allow a list of trusted parameters through.
+        def animal_params
+        params.expect(animal: [ :name, :shelter_id, :species, :sex, :age, :status, :favorite ])
+        end
 end
