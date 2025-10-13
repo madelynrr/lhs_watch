@@ -23,6 +23,8 @@ namespace :db do
                 new_animals << dog["name"]
             end
         end
+        pending_animals = Animal.where("updated_at < ?", task_started).update(status: "pending")
+
         puts "Finished fetching!"
         puts "New dogs: #{new_animals.join(", ")}"
         puts "Still here: #{old_animals.join(", ")}"
