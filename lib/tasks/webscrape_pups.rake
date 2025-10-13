@@ -8,8 +8,10 @@ namespace :db do
 
         fetched_dog_info.each do |dog|
             # How to make this one insert query?
-            # How to handle status here?
             animal = Animal.find_by(lhs_id: dog["lhs_id"])
+
+            next if animal && animal.status == "adoptable"
+
             if animal && animal.status == "new_to_shelter"
                 animal.update(status: "adoptable")
             else
