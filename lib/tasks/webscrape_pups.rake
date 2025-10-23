@@ -22,7 +22,8 @@ namespace :db do
                 old_animals << animal.name
             elsif animal && animal.status == "new_to_shelter"
                 animal.update(status: "adoptable")
-            else
+                old_animals << animal.name
+            elsif animal == nil
                 Animal.create(name: dog["name"], lhs_id: dog["lhs_id"], gender: dog["gender"], age: 2.0, image_url: dog["image_url"])
                 new_animals << dog["name"]
             end
