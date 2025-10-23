@@ -33,7 +33,7 @@ namespace :db do
         puts "Finished fetching!"
         puts "Newly Adopted: #{newly_adopted_animals.pluck(:name).join(", ")}"
         puts "New dogs: #{new_animals.join(", ")}"
-        puts "Still here: #{old_animals.join(", ")}"
+        puts "Still here: #{old_animals.sort.join(", ")}"
         puts "Returned: #{returned_animals.join(", ")}"
     end
 end
