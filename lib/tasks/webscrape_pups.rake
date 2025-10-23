@@ -8,12 +8,16 @@ namespace :db do
         fetched_dog_info = webscraper.fetch_dogs
         new_animals = []
         old_animals = []
+        returned_animals = []
 
         # How to make this one insert query?
         fetched_dog_info.each do |dog|
             animal = Animal.find_by(lhs_id: dog["lhs_id"])
 
-            if animal && animal.status == "adoptable"
+            if animal && animal.status == "adopted"
+                animal.update(status: "adoptable")
+                returned_animals << animal.name
+            elsif animal && animal.status == "adoptable"
                 animal.update(updated_at: task_started)
                 old_animals << animal.name
             elsif animal && animal.status == "new_to_shelter"
@@ -29,5 +33,6 @@ namespace :db do
         puts "Pending pups: #{pending_animals.pluck(:name).join(", ")}"
         puts "New dogs: #{new_animals.join(", ")}"
         puts "Still here: #{old_animals.join(", ")}"
+        puts "Returned: #{returned_animals.join(", ")}"
     end
 end
