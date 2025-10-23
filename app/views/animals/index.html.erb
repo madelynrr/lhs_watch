@@ -5,14 +5,14 @@
       <h4 class="mt-6 text-lg/8 text-gray-600">All the pretty babies!</h4>
     </div>
     <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
-    <% @animals.each do |animal| %>
-      <div>
-      <%= render animal %>
-      <p class="p-4">
-        <%= link_to "Show this animal", animal_path(animal) %>
-      </p>
-      </div>
-    <% end %>
+      <% @animals.each do |animal| %>
+        <div>
+          <%= render animal %>
+          <p class="p-4">
+            <%= link_to "Show this animal", animal_path(animal) %>
+          </p>
+        </div>
+      <% end %>
     </ul>
   </div>
 </div>

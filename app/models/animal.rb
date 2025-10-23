@@ -3,5 +3,5 @@ class Animal < ApplicationRecord
 
     enum :species, { dog: 0, cat: 1, small_and_furry: 2 }
     enum :gender, { male: 0, female: 1 }
-    enum :status, { new_to_shelter: 0, adoptable: 1, pending: 2, adopted: 3, returned: 4 }
+    enum :status, { new_to_shelter: 0, adoptable: 1, adopted: 2 }
 end
