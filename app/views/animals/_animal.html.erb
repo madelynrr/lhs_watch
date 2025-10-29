@@ -1,6 +1,6 @@
 <div>
   <li>
-    <div id="<%= dom_id animal %>" class="flex items-center gap-x-6 border-2 border-gray-500 p-2 rounded">
+    <div id="<%= dom_id animal %>" class="flex items-center justify-center gap-x-6 border-2 border-gray-500 p-2 rounded">
       <%= render "/animals/favorite", animal: animal %>
       <img src=<%= animal.image_url %> alt="" class="size-16 rounded-full outline-1 -outline-offset-1 outline-black/5" />
       <div>
