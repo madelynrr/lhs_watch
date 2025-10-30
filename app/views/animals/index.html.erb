@@ -20,6 +20,21 @@
           <% end %>
         </ul>
       </div>
+
+      <div class="grid gap-12">
+        <h3 class="text-3xl text-center font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">Adopted Animals!</h3>
+        <ul role="list" class="grid gap-x-8 gap-y-12 grid-cols-3
+        gap-y-16"">
+          <% @animals.adopted.each do |animal| %>
+            <div>
+              <%= render animal %>
+              <p class="p-4">
+                <%= link_to "Show this animal", animal_path(animal) %>
+              </p>
+            </div>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
