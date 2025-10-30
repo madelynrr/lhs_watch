@@ -13,6 +13,9 @@
           <% @animals.adoptable.each do |animal| %>
             <div>
               <%= render animal %>
+              <p class="p-4">
+                <%= link_to "Show this animal", animal_path(animal) %>
+              </p>
             </div>
           <% end %>
         </ul>
