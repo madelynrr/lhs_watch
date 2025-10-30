@@ -7,6 +7,21 @@
 
     <div class="grid gap-40">
       <div class="grid gap-12">
+        <h3 class="text-3xl text-center font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">New Animals!</h3>
+        <ul role="list" class="grid gap-x-8 gap-y-12 grid-cols-3
+        gap-y-16">
+          <% @animals.new_to_shelter.each do |animal| %>
+            <div>
+              <%= render animal %>
+              <p class="p-4">
+                <%= link_to "Show this animal", animal_path(animal) %>
+              </p>
+            </div>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="grid gap-12">
         <h3 class="text-3xl text-center font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">Adoptable Animals!</h3>
         <ul role="list" class="grid gap-x-8 gap-y-12 grid-cols-3
         gap-y-16">
