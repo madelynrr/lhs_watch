@@ -8,6 +8,11 @@
     <div class="grid gap-40">
       <div class="grid gap-12">
         <h3 class="text-3xl text-center font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">Adoptable Animals!</h3>
+          <% @animals.adoptable.each do |animal| %>
+            <div>
+              <%= render animal %>
+            </div>
+          <% end %>
       </div>
     </div>
   </div>
