@@ -1,18 +1,57 @@
-<div class="bg-white py-24 sm:py-32">
-  <div class="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
+<div class="bg-white py-24 sm:py-10">
+  <div class="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8">
     <div class="max-w-xl">
       <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">All Animals</h2>
       <h4 class="mt-6 text-lg/8 text-gray-600">All the pretty babies!</h4>
     </div>
-    <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
-      <% @animals.each do |animal| %>
-        <div>
-          <%= render animal %>
-          <p class="p-4">
-            <%= link_to "Show this animal", animal_path(animal) %>
-          </p>
+
+    <div class="grid gap-40">
+      <% unless @animals.new_to_shelter.empty? %>
+        <div class="grid gap-12">
+          <h3 class="text-3xl text-center font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">New Animals!</h3>
+          <ul role="list" class="grid gap-x-8 gap-y-12 grid-cols-3
+          gap-y-16">
+            <% @animals.new_to_shelter.each do |animal| %>
+              <div>
+                <%= render animal %>
+                <p class="p-4">
+                  <%= link_to "Show this animal", animal_path(animal) %>
+                </p>
+              </div>
+            <% end %>
+          </ul>
         </div>
       <% end %>
-    </ul>
+
+      <div class="grid gap-12">
+        <h3 class="text-3xl text-center font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">Adoptable Animals!</h3>
+        <ul role="list" class="grid gap-x-8 gap-y-12 grid-cols-3
+        gap-y-16">
+          <% @animals.adoptable.each do |animal| %>
+            <div>
+              <%= render animal %>
+              <p class="p-4">
+                <%= link_to "Show this animal", animal_path(animal) %>
+              </p>
+            </div>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="grid gap-12">
+        <h3 class="text-3xl text-center font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">Adopted Animals!</h3>
+        <ul role="list" class="grid gap-x-8 gap-y-12 grid-cols-3
+        gap-y-16"">
+          <% @animals.adopted.each do |animal| %>
+            <div>
+              <%= render animal %>
+              <p class="p-4">
+                <%= link_to "Show this animal", animal_path(animal) %>
+              </p>
+            </div>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
