@@ -19,6 +19,7 @@ namespace :db do
                 returned_animals << animal.name
             elsif animal && dog["image_url"] != "https://g.petango.com/shared/Photo-Not-Available-dog.gif" && animal.image_url == "https://g.petango.com/shared/Photo-Not-Available-dog.gif"
                 animal.update(image_url: dog["image_url"])
+                old_animals << animal.name
             elsif animal && animal.status == "adoptable"
                 animal.update(updated_at: task_started)
                 old_animals << animal.name
