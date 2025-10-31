@@ -21,7 +21,7 @@ class LhsWebscraper
                 new_dog["name"] = animal.find_element(css: ".name").text
                 new_dog["lhs_id"] = animal.find_element(css: "a").attribute("href").delete_prefix(BASE_ANIMAL_URL)
                 new_dog["gender"] = animal.attribute("data-sex").downcase
-                # new_dog["age"] = animal.text
+                new_dog["age"] = animal.text.gsub(/^.*?\n/, "").to_i
                 new_dog["image_url"] = animal.find_elements(tag_name: "img").first.attribute("src")
 
                 fetched_dog_info << new_dog
